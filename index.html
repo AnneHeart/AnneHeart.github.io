@@ -39,8 +39,8 @@ canvas {
 #pinkboard {
   position: relative;
   margin: auto;
-  height: 500px;
-  width: 500px;
+  height: 900px;
+  width: 900px;
   animation: animate 1.3s infinite;
 }
  
@@ -86,10 +86,11 @@ canvas {
  </HEAD>
  
  <BODY>
-   <div class="box">
-      <canvas id="pinkboard"></canvas>
-   </div>
-  <script>
+	<div class="box">
+		<canvas id="pinkboard"></canvas>
+	</div>
+   
+	<script>
   /*
  * Settings
  */
@@ -102,6 +103,8 @@ var settings = {
     size:      13, // particle size in pixels
   },
 };
+
+
 /*
  * RequestAnimationFrame polyfill by Erik Möller
  */
@@ -243,8 +246,8 @@ var ParticlePool = (function() {
   // get point on heart with -PI <= t <= PI
   function pointOnHeart(t) {
     return new Point(
-      160 * Math.pow(Math.sin(t), 3),
-      130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
+      320 * Math.pow(Math.sin(t), 3),
+      260 * Math.cos(t) - 100 * Math.cos(2 * t) - 40 * Math.cos(3 * t) - 20 * Math.cos(4 * t) + 50
     );
   }
  
@@ -321,17 +324,46 @@ var ParticlePool = (function() {
   }, 10);
 })(document.getElementById('pinkboard'));
   </script>
-  <div class="center-text",
-  style="background-color:rgb(0, 0, 0);
+  	<div class="center-text",
+  	style="background-color:rgb(0, 0, 0);
         width: 100%;
         color: rgb(225, 12, 168);
         height:100%;
-        font-size: 31px;
+        font-size: 20px;
         font-style: italic;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-bottom: 5px;
-        text-align: center;">sbq</div>
+        margin-bottom: 8px;
+        text-align: center;">
+		Anne has been in this world for
+		<br/><br/><br/><br/>
+		
+		<span id="span_dt_dt"></span>
+		
+	</div>
+
+    
+		
+  <script language="javascript">
+    function show_date_time() {
+        window.setTimeout("show_date_time()", 1000);
+        BirthDay = new Date("11/27/1999 00:00:00");
+        today = new Date();
+        timeold = (today.getTime() - BirthDay.getTime());
+        sectimeold = timeold / 1000
+        secondsold = Math.floor(sectimeold);
+        msPerDay = 24 * 60 * 60 * 1000
+        e_daysold = timeold / msPerDay
+        daysold = Math.floor(e_daysold);
+        e_hrsold = (e_daysold - daysold) * 24;
+        hrsold = Math.floor(e_hrsold);
+        e_minsold = (e_hrsold - hrsold) * 60;
+        minsold = Math.floor((e_hrsold - hrsold) * 60);
+        seconds = Math.floor((e_minsold - minsold) * 60);
+        span_dt_dt.innerHTML = daysold + "d" + hrsold + "h" + minsold + "min" + seconds + "s";
+    }
+    show_date_time();
+</script>
  </BODY>
 </HTML>
